@@ -1,0 +1,47 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body bgcolor="#c4c3e2">
+
+<form action="" method="post">
+    <p>
+        {% for table_name in drop_lists %}
+<!--        value={{table_name|capitalize}}-->
+        <input type="text" list={{table_name}} name={{table_name|lower}} width="100">
+        <datalist id={{table_name}}>
+        {% for row in drop_lists[table_name] %}
+        <option>{{ row[0] }}</option>
+        {% endfor %}
+        </datalist>
+        {% endfor %}
+        <input type="text" name="phone" width="100" value="Phone">
+        <input type="submit" name="button" value="Добавить">
+        <input type="submit" name="button" value="Найти">
+        <a href=/settings><input type="button" value="Settings"></a>
+    </p>
+</form>
+<form>
+    <table>
+        <caption>Phone book</caption>
+        <tr>
+            <th width="150">Surname</th>
+            <th width="150">Name</th>
+            <th width="150">Patronymic</th>
+            <th width="170">Street</th>
+            <th width="200">Phone</th>
+        </tr>
+        {% for user in users_list %}
+        <tr>
+            {% for i in range(1, 6) %}
+            <td>{{ user[i] }}</td>
+            {% endfor %}
+            <td><a href=/{{user[0]}}><input type="button" value="See&Redact"></a></td>
+            <td><a href=/d{{user[0]}}><input type="button" value="Delete"></a></td>
+        </tr>
+        {% endfor %}
+    </table>
+</form>
+</body>
+</html>

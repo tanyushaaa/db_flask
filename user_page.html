@@ -1,0 +1,32 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form method="post">
+    <table>
+        {% for table_name in drop_lists %}
+        <tr>
+            <td width="90"><h>{{table_name|capitalize}}:</h></td>
+            <td>
+                <input type="text" list={{table_name}} name={{table_name|lower}} value={{contact[table_name|lower]}}>
+                <datalist id={{table_name}}>
+                {% for row in drop_lists[table_name] %}
+                <option>{{ row[0] }}</option>
+                {% endfor %}
+                </datalist>
+            </td>
+        </tr>
+        {% endfor %}
+        <tr>
+            <td><h>Phone:</h></td>
+            <td>
+                <input type="text" list='phone' name='phone' value={{contact['phone']}}>
+            </td>
+        </tr>
+    </table>
+    <input type="submit" name='button' value="Update">
+</form>
+</body>
+</html>
